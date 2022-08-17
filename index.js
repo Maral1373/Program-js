@@ -16,21 +16,27 @@ function game() {
       chalk.yellow(`!😊`)
   );
 
-  const resume = prompt(`${chalk.hex("#F8C471")("Do you wanna play? 😇")}`);
-  if (resume !== "yes") {
+  const resume =
+    prompt(`${chalk.hex("#F8C471")("Do you wanna play? 😇  (default yes)")}`) ||
+    "yes";
+  const yes = ["ja", "y", "yes", "yay"];
+  if (!yes.includes(resume.toLowerCase())) {
     console.log(
       `${chalk.hex("#5DADE2 ")("Bye")} ${chalk.hex("#7D3C98")(name)} 😕`
     );
     return;
   }
 
-  const questionsNumber = prompt(
-    `${chalk.hex("#F8C471")("How many questions? 🤔")}`
-  );
+  const questionsNumber =
+    prompt(`${chalk.hex("#F8C471")("How many questions? 🤔 (default 3)")}`) ||
+    3;
 
-  const difficulty = prompt(
-    `${chalk.hex("#F8C471")("How difficult (between 10 and 100)? 🤭")}`
-  );
+  const difficulty =
+    prompt(
+      `${chalk.hex("#F8C471")(
+        "How difficult (from 10)? 🤭 (default 10)"
+      )}`
+    ) || 10;
 
   function randomNum(num = difficulty) {
     return Math.floor(Math.random() * num);
@@ -76,9 +82,20 @@ function game() {
   let userScore = 0;
 
   for (let i = 0; i < allQuestions.length; i++) {
-    let questionPrompt = prompt(chalk.blue(allQuestions[i].question));
+    let questionPrompt = prompt(
+      chalk.blue(`Question ${i + 1}: ${allQuestions[i].question}`)
+    );
+    if (
+      questionPrompt === "exit" ||
+      questionPrompt === "q" ||
+      questionPrompt === "quit"
+    )
+      return;
     if (parseInt(questionPrompt) === allQuestions[i].answer) {
       userScore++;
+      console.log(`Yaaay! it was correct! 🎉`);
+    } else {
+      console.log(`Ooops 😕 correct answer was ${allQuestions[i].answer}`);
     }
   }
 
@@ -89,8 +106,6 @@ function game() {
       } questions correctly`
     )
   );
-
-  console.log(allQuestions);
 }
 
 game();
