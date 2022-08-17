@@ -2,11 +2,11 @@ import promptSync from "prompt-sync";
 const prompt = promptSync();
 import chalk from "chalk";
 
-function game() {
-  const name = prompt(`${chalk.hex("#FFA500")("Hey, What's your name?")}`);
+function game(n, a) {
+  const name = n || prompt(`${chalk.hex("#FFA500")("Hey, What's your name?")}`);
   console.log(`${chalk.hex("#FFA500")("Hello")} ${chalk.red(name)} 🤩`);
 
-  const age = prompt(`${chalk.hex("#1ABC9C")("How old are you?")}`);
+  const age = a || prompt(`${chalk.hex("#1ABC9C")("How old are you?")}`);
 
   console.log(
     chalk.cyan(`Hello `) +
@@ -17,9 +17,9 @@ function game() {
   );
 
   const resume =
-    prompt(`${chalk.hex("#F8C471")("Do you wanna play? 😇  (default yes)")}`) ||
+    prompt(`${chalk.hex("#1A5276")("Do you wanna play? 😇  (default yes)")}`) ||
     "yes";
-  const yes = ["ja", "y", "yes", "yay"];
+  const yes = ["ja", "y", "yes", "yay", "j"];
   if (!yes.includes(resume.toLowerCase())) {
     console.log(
       `${chalk.hex("#5DADE2 ")("Bye")} ${chalk.hex("#7D3C98")(name)} 😕`
@@ -28,14 +28,12 @@ function game() {
   }
 
   const questionsNumber =
-    prompt(`${chalk.hex("#F8C471")("How many questions? 🤔 (default 3)")}`) ||
+    prompt(`${chalk.hex("#C39BD3")("How many questions? 🤔 (default 3)")}`) ||
     3;
 
   const difficulty =
     prompt(
-      `${chalk.hex("#F8C471")(
-        "How difficult (from 10)? 🤭 (default 10)"
-      )}`
+      `${chalk.hex("#A2D9CE")("How difficult (from 10)? 🤭 (default 10)")}`
     ) || 10;
 
   function randomNum(num = difficulty) {
@@ -83,7 +81,9 @@ function game() {
 
   for (let i = 0; i < allQuestions.length; i++) {
     let questionPrompt = prompt(
-      chalk.blue(`Question ${i + 1}: ${allQuestions[i].question}`)
+      chalk.blue(
+        `Question ${i + 1}: ${chalk.hex("#FAD7A0")(allQuestions[i].question)}`
+      )
     );
     if (
       questionPrompt === "exit" ||
@@ -106,6 +106,20 @@ function game() {
       } questions correctly`
     )
   );
+
+  const repeat =
+    prompt(
+      `${chalk.hex("#1A5276")("Do you wanna play again? 😇  (default no)")}`
+    ) || "no";
+  const repeatAnswer = ["ja", "y", "yes", "yay", "j"];
+  if (!repeatAnswer.includes(repeat.toLowerCase())) {
+    console.log(
+      `${chalk.hex("#5DADE2 ")("Bye")} ${chalk.hex("#7D3C98")(name)} 😕`
+    );
+    return;
+  } else {
+    return game(name, age);
+  }
 }
 
 game();
