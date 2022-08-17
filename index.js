@@ -2,7 +2,7 @@ import promptSync from "prompt-sync";
 const prompt = promptSync();
 import chalk from "chalk";
 
-function game(n, a) {
+function game(n, a, r) {
   const name = n || prompt(`${chalk.hex("#FFA500")("Hey, What's your name?")}`);
   console.log(`${chalk.hex("#FFA500")("Hello")} ${chalk.red(name)} 🤩`);
 
@@ -17,6 +17,7 @@ function game(n, a) {
   );
 
   const resume =
+    r ||
     prompt(`${chalk.hex("#1A5276")("Do you wanna play? 😇  (default yes)")}`) ||
     "yes";
   const yes = ["ja", "y", "yes", "yay", "j"];
@@ -118,7 +119,7 @@ function game(n, a) {
     );
     return;
   } else {
-    return game(name, age);
+    return game(name, age, "yes");
   }
 }
 
