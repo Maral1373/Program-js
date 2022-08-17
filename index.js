@@ -25,11 +25,11 @@ function game() {
   }
 
   const questionsNumber = prompt(
-    `${chalk.hex("#F8C471")("How many questions? 😇")}`
+    `${chalk.hex("#F8C471")("How many questions? 🤔")}`
   );
 
   const difficulty = prompt(
-    `${chalk.hex("#F8C471")("How difficult (between 10 and 100)? 😇")}`
+    `${chalk.hex("#F8C471")("How difficult (between 10 and 100)? 🤭")}`
   );
 
   function randomNum(num = difficulty) {
@@ -89,6 +89,8 @@ function game() {
       } questions correctly`
     )
   );
+
+  console.log(allQuestions);
 }
 
 game();
