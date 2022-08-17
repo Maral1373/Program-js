@@ -1,6 +1,7 @@
 import promptSync from "prompt-sync";
 const prompt = promptSync();
 import chalk from "chalk";
+import { randomUUID } from "crypto";
 
 function game() {
   const name = prompt(`${chalk.hex("#FFA500")("Hey, What's your name?")}`);
@@ -24,26 +25,69 @@ function game() {
     return;
   }
 
-  let allQuestions = [
-    { question: "2 + 2 ?", answer: 4 },
-    { question: "2 * 12 ?", answer: 24 },
-    { question: "3 - 1 ?", answer: 2 },
-    { question: "12 / 12 ?", answer: 1 },
-    { question: "22 / 2 ?", answer: 11 },
-  ];
+  const questionsNumber = prompt(
+    `${chalk.hex("#F8C471")("How many questions? 😇")}`
+  );
+
+  function randomNum(num = 100) {
+    return Math.floor(Math.random() * num);
+  }
+
+  function randomOperation() {
+    const randNum = randomNum(3);
+    const ops = ["+", "-", "*", "/"];
+    return ops[randNum];
+  }
+
+  const allQuestions = [];
+
+  function calculateNum(n1, n2, operation) {
+    console.log(n1, n2, operation);
+    let res = 0;
+    switch (operation) {
+      case "+":
+        res = n1 + n2;
+        break;
+      case "-":
+        res = n1 - n2;
+        break;
+      case "*":
+        res = n1 * n2;
+        break;
+      case "/":
+        res = n1 / n2;
+        break;
+    }
+    console.log(res);
+    return res;
+  }
+
+  for (let i = 0; i < parseInt(questionsNumber); i++) {
+    let n1 = randomNum() + 1;
+    let n2 = randomNum() + 1;
+    let operation = randomOperation();
+    allQuestions.push({
+      question: `${n1} ${operation} ${n2} ?`,
+      answer: calculateNum(n1, n2, operation),
+    });
+  }
+
+  console.log(allQuestions);
 
   let userScore = 0;
 
   for (let i = 0; i < allQuestions.length; i++) {
     let questionPrompt = prompt(chalk.blue(allQuestions[i].question));
-    if (questionPrompt === allQuestions[i].answer) {
+    if (parseInt(questionPrompt) === allQuestions[i].answer) {
       userScore++;
     }
   }
 
   console.log(
     chalk.yellow(
-      `You answered ${chalk.green(userScore)} of 5 questions correctly`
+      `You answered ${chalk.green(userScore)} of ${
+        allQuestions.length
+      } questions correctly`
     )
   );
 }
