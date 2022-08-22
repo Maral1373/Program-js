@@ -15,24 +15,21 @@ Konfiguration
 Um das Mathe-Quiz im Terminal auszuprobieren, benötigst Du folgendes:
 
 1. Javascript
-2.Terminal
+2. Terminal
 
 Installation
 
-1.Öffne das Terminal
-2.Ausführen git clone https://github.com/Maral1373/Program-js um das Repository zu clonen
-3.Mit nmp - install startest Du das Programm (Hinterher reicht index.js )
+1. Öffne das Terminal
+2. Ausführen git clone https://github.com/Maral1373/Program-js um das Repository zu clonen
+3. Mit nmp - install startest Du das Programm (Hinterher reicht node index.js )
 
-Beschreibung
+Beschreibung:
 
-Nach der Begrüßung hast Du die die Möglichkeit einen Schwierigkeitsgrad zu wählen.
-Dies erfolgt dadurch das Du angibst wie viele Aufgaben Du gestellt haben möchtest.
+Nach der Begrüßung hast Du die Möglichkeit deinen Individuellen Schwierigkeitsgrad zuwählen,
+indem unangibst welche deine höchste Zahl, ist die genommen werden soll.
 
-1-10 ist einfach
-11- … ist schwer 
+Fragen die mit Ja oder Nein beantwortet werden müssen, kannst Du entweder mit
+Ja / yes / j / y oder mit Nein / No / n / N bestätigen bei Ursprünglich kannst Du
+einfach Enter (falls Du es beschtätigt)
 
-Fragen die mit Ja oder Nein beantwortet werden müssen, kannst Du entweder mit 
-
-Ja / yes / j / y oder mit Nein / No / n / N bestätigen
-
-Wenn du das Spiel verlassen möchtest gebe : Exit – quit – q ein.
+Wenn du das Spiel verlassen möchtest gebe : exit – quit – q ein.
